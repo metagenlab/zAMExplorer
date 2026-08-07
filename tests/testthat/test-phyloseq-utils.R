@@ -6,9 +6,34 @@ test_that("phyloseq validation and orientation are stable", {
 })
 
 test_that("transformations return finite sample-by-feature matrices", {
-  ps <- make_test_phyloseq(); mat <- zAMPExplorer:::zamp_otu_matrix(ps, samples_in_rows = TRUE)
-  rel <- zAMPExplorer:::zamp_transform_matrix(mat, "compositional"); expect_equal(rowSums(rel), rep(1, nrow(rel)))
-  clr <- zAMPExplorer:::zamp_transform_matrix(mat, "clr"); expect_true(all(is.finite(clr))); expect_equal(rowMeans(clr), rep(0, nrow(clr)), tolerance = 1e-10)
+  ps <- make_test_phyloseq()
+  mat <- zAMPExplorer:::zamp_otu_matrix(
+    ps,
+    samples_in_rows = TRUE
+  )
+  
+  rel <- zAMPExplorer:::zamp_transform_matrix(
+    mat,
+    "compositional"
+  )
+  
+  expect_equal(
+    unname(rowSums(rel)),
+    rep(1, nrow(rel))
+  )
+  
+  clr <- zAMPExplorer:::zamp_transform_matrix(
+    mat,
+    "clr"
+  )
+  
+  expect_true(all(is.finite(clr)))
+  
+  expect_equal(
+    unname(rowMeans(clr)),
+    rep(0, nrow(clr)),
+    tolerance = 1e-10
+  )
 })
 
 test_that("taxonomic aggregation keeps sample totals", {
