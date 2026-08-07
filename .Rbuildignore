@@ -6,3 +6,9 @@
 ^\.DS_Store$
 ^rsconnect/
 ^zAMPExplorer.Rproj$
+^zAMPExplorer_results(/|$)
+^\.github$
+^Dockerfile$
+^docs$
+^env\.yml$
+^install_dependencies\.R$
