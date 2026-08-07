@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_app.R
 \name{zAMPExplorer_app}
 \alias{zAMPExplorer_app}
-\title{Launch the zAMPExplorer Application}
+\title{Launch zAMPExplorer}
 \usage{
 zAMPExplorer_app(
   onStart = NULL,
@@ -13,57 +13,25 @@ zAMPExplorer_app(
 )
 }
 \arguments{
-\item{onStart}{A function that will be called before the app is actually run.
-This is only needed for \code{shinyAppObj}, since in the \code{shinyAppDir}
-case, a \code{global.R} file can be used for this purpose.}
+\item{onStart}{Optional function called before the application starts.}
 
-\item{options}{Named options that should be passed to the \code{runApp} call
-(these can be any of the following: "port", "launch.browser", "host", "quiet",
-"display.mode" and "test.mode"). You can also specify \code{width} and
-\code{height} parameters which provide a hint to the embedding environment
-about the ideal height/width for the app.}
+\item{options}{Named list of Shiny application options.}
 
-\item{enableBookmarking}{Can be one of \code{"url"}, \code{"server"}, or
-\code{"disable"}. The default value, \code{NULL}, will respect the setting from
-any previous calls to  \code{\link[shiny:enableBookmarking]{enableBookmarking()}}. See \code{\link[shiny:enableBookmarking]{enableBookmarking()}}
-for more information on bookmarking your app.}
+\item{enableBookmarking}{Bookmarking mode passed to \code{\link[shiny:shinyApp]{shiny::shinyApp()}}.}
 
-\item{uiPattern}{A regular expression that will be applied to each \code{GET}
-request to determine whether the \code{ui} should be used to handle the
-request. Note that the entire request path must match the regular
-expression in order for the match to be considered successful.}
+\item{uiPattern}{URL pattern passed to \code{\link[shiny:shinyApp]{shiny::shinyApp()}}.}
 
-\item{...}{Arguments to pass to golem options. See \code{\link[golem]{get_golem_options}} for more details.}
+\item{...}{Reserved for backward compatibility.}
 }
 \value{
-A \code{shiny.appobj} object representing the running Shiny application.
+A \code{shiny.appobj}.
 }
 \description{
-zAMPExplorer provides an interactive interface for analyzing and visualizing microbiome sequencing data,
-particularly the output of the zAMP pipeline (phyloseq objects). It includes functionalities such as:
-compositional barplots, heatmaps, diversity metrics, beta-diversity analyses, and more.
+Launch the zAMPExplorer Shiny application for downstream exploration of
+16S amplicon microbiome data stored in a \code{phyloseq} object.
 }
-\section{Features}{
-
-\itemize{
-\item Read QC, Taxa overviews.
-\item Compositional barplots, relative abundance heatmaps.
-\item Alpha and beta diversity visualizations.
-\item Differential abundance testing using MaAsLin2.
-\item Community typing using Dirichlet Multinomial Mixtures.
-\item Interactive RDA ordination plots.
-}
-}
-
 \examples{
 if (interactive()) {
   zAMPExplorer_app()
-}
-}
-\seealso{
-Useful links:
-\itemize{
-\item Documentation: \url{https://github.com/metagenlab/zAMPExplorer}
-\item zAMP pipeline: \url{https://zamp.readthedocs.io/en/latest/}
 }
 }
