@@ -53,7 +53,8 @@ mod_rda_server <- function(id, ps, output_dir, auto_save) {
         env <- meta[, input$explanatory, drop = FALSE]
         bad_variables <- vapply(env, function(v) {
           if (is.numeric(v)) {
-            !is.finite(stats::sd(v, na.rm = TRUE)) || stats::sd(v, na.rm = TRUE) == 0
+            s <- stats::sd(v, na.rm = TRUE)
+            !is.finite(s) || s == 0
           } else {
             length(unique(v)) < 2
           }
@@ -68,10 +69,10 @@ mod_rda_server <- function(id, ps, output_dir, auto_save) {
         shiny::validate(shiny::need(predictor_df < nrow(comm) - 1L, paste0("The selected explanatory variables use ", predictor_df, " model degrees of freedom but only ", nrow(comm), " complete samples remain. Select fewer/simpler explanatory variables.")))
 
         comm <- zamp_transform_matrix(comm, input$transform)
-        variable_taxa <- vapply(as.data.frame(comm), function(v) stats::sd(v, na.rm = TRUE) > 0, logical(1))
-        comm <- comm[, variable_taxa, drop = FALSE]
-        shiny::validate(shiny::need(ncol(comm) >= 2, "Too few variable taxa remain for constrained ordination."))
-        shiny::validate(shiny::need(all(is.finite(comm)), "The transformed community matrix contains non-finite values."))
+        shiny::validate(
+          shiny::need(ncol(comm) >= 2, "At least two taxa/features are required for constrained ordination."),
+          shiny::need(all(is.finite(comm)), "The transformed community matrix contains non-finite values.")
+        )
 
         formula <- stats::as.formula("comm ~ .")
         fit <- if (identical(input$method, "RDA")) {
