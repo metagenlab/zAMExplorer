@@ -178,7 +178,7 @@ zamp_ordination <- function(ps, rank, method, distance, transform, colour_var, s
   p <- p +
     ggplot2::labs(
       title = paste(method, "ordination"),
-      subtitle = paste(rank, "level ·", distance, "distance ·", transform),
+      subtitle = paste(rank, "level |", distance, "distance |", transform),
       x = xlab,
       y = ylab,
       colour = colour_var,

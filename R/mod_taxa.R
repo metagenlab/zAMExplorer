@@ -22,7 +22,7 @@ mod_taxa_ui <- function(id) {
     ),
     shiny::fluidRow(
       shinydashboard::box(title = "Shared and unique core taxa", width = 12, status = "primary", solidHeader = TRUE,
-        shiny::helpText("For 2–4 groups the app draws a Venn diagram. With more groups it draws an UpSet plot."),
+        shiny::helpText("For 2-4 groups the app draws a Venn diagram. With more groups it draws an UpSet plot."),
         shiny::plotOutput(ns("shared_plot"), height = "650px"),
         shiny::downloadButton(ns("shared_table_download"), "Download group/taxon membership")
       )

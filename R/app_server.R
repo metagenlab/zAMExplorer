@@ -42,7 +42,7 @@ app_server <- function(input, output, session) {
       shiny::tags$strong("Phyloseq object ready."),
       shiny::tags$br(),
       sprintf(
-        "%s samples · %s taxa · %s reads",
+        "%s samples | %s taxa | %s reads",
         format(phyloseq::nsamples(ps), big.mark = ","),
         format(phyloseq::ntaxa(ps), big.mark = ","),
         format(sum(phyloseq::sample_sums(ps)), big.mark = ",")
