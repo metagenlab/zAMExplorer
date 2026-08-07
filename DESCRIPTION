@@ -1,11 +1,10 @@
 Type: Package
 Package: zAMPExplorer
-Title: A Versatile Shiny App for Microbiota Profiling in Clinical
-    Microbiology
-Version: 0.1.0
+Title: Interactive Downstream Analysis of 16S Microbiome Data
+Version: 0.2.0
 Authors@R: c(
     person("Sedreh", "Nassirnia", , "Sedreh.Nassirnia@chuv.ch", role = c("aut", "cre"),
-    comment = c(ORCID = "0009-0008-7012-6983")),
+           comment = c(ORCID = "0009-0008-7012-6983")),
     person("Violeta", "Castelo-Szekely", role = "aut"),
     person("Farid", "Chaabane", role = "aut"),
     person("Valentin", "Scherz", role = "aut"),
@@ -13,69 +12,49 @@ Authors@R: c(
     person("Gilbert", "Greub", role = "aut"),
     person("Claire", "Bertelli", role = "aut")
   )
-Description: A Shiny web application offering a user-friendly, accessible,
-    and reproducible platform for downstream analysis of 16S rRNA-based
-    metagenomics data.  Key features include quality control
-    visualizations (e.g., rarefaction curves), community composition
-    plots, and statistical analyses for alpha- and beta-diversity.  The
-    app integrates advanced features like community typing with Dirichlet
-    multinomial modeling (DMM) and metadata-driven redundancy analysis
-    (RDA) to explore microbial associations with clinical and experimental
-    variables.
+Description: A modular Shiny application for exploratory and statistical
+    downstream analysis of 16S rRNA amplicon microbiome data stored as
+    'phyloseq' objects. It provides sequencing-depth quality control,
+    taxonomic composition and heatmaps, alpha and beta diversity,
+    multivariable differential abundance with 'MaAsLin2', Dirichlet
+    multinomial community typing, and constrained ordination. Interactive
+    figures and publication exports are generated from the same plotting
+    objects to improve reproducibility.
 License: GPL-3
 URL: https://github.com/metagenlab/zAMPExplorer
 BugReports: https://github.com/metagenlab/zAMPExplorer/issues
-SystemRequirements: microViz (install separately from R-universe or GitHub; see INSTALL file)
-Imports: 
+Depends:
+    R (>= 4.3.0)
+Imports:
+    ComplexHeatmap,
+    DirichletMultinomial,
     dplyr,
     DT,
-    forcats,
-    reshape2,
     ggplot2,
+    ggrepel,
     ggvenn,
-    golem,
-    graphics,
-    grDevices,
-    magrittr,
-    microbiome,
-    MicrobiotaProcess,
+    grid,
+    Maaslin2,
+    methods,
     phyloseq,
+    plotly,
+    scales,
     shiny,
     shinydashboard,
-    shinyFiles,
-    shinyWidgets,
     stats,
     tidyr,
     UpSetR,
     utils,
     vegan,
-    writexl,
-    fs,
-    scales,
-    RColorBrewer,
-    plotly,
-    gridExtra,
-    tibble,
-    htmlwidgets,
-    ComplexHeatmap,
-    InteractiveComplexHeatmap
-Depends:
-    microViz,
-    DirichletMultinomial,
-    Maaslin2
-Suggests: 
-    config,
-    spelling,
-    webshot,
-    ggside,
-    grid,
-    testthat (>= 3.0.0),
+    writexl
+Suggests:
     knitr,
+    ragg,
     rmarkdown,
-    shinytest2
+    shinytest2,
+    svglite,
+    testthat (>= 3.0.0)
 biocViews: ShinyApps, StatisticalMethod, Metagenomics, Visualization, Sequencing, Microbiome
-Config/ci-settings: lint_free: true
-Config/ci-tools: testthat
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
